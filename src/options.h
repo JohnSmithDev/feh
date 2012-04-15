@@ -190,6 +190,8 @@ struct __fehkb {
 	struct __fehkey toggle_fullscreen;
 	struct __fehkey reload_minus;
 	struct __fehkey reload_plus;
+	struct __fehkey jump_back_10;
+	struct __fehkey jump_fwd_10;
 };
 
 struct __fehbutton {

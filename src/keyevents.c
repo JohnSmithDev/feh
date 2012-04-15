@@ -307,6 +307,10 @@ void init_keyevents(void) {
 			cur_kb = &keys.reload_minus;
 		else if (!strcmp(action, "reload_plus"))
 			cur_kb = &keys.reload_plus;
+		else if (!strcmp(action, "jump_back_10"))
+			cur_kb = &keys.jump_back_10;
+		else if (!strcmp(action, "jump_fwd_10"))
+			cur_kb = &keys.jump_fwd_10;
 		else
 			weprintf("keys: Invalid action: %s", action);
 
@@ -528,6 +532,14 @@ void feh_event_handle_keypress(XEvent * ev)
 			slideshow_change_image(winwid, SLIDE_JUMP_FWD, 1);
 		else if (winwid->type == WIN_TYPE_THUMBNAIL)
 			feh_thumbnail_select_next(winwid, 10);
+	}
+	else if (feh_is_kp(&keys.jump_back_10, keysym, state)) {
+		if (opt.slideshow)
+			slideshow_change_image(winwid, SLIDE_10_BACK, 1);
+	}
+	else if (feh_is_kp(&keys.jump_fwd_10, keysym, state)) {
+		if (opt.slideshow)
+			slideshow_change_image(winwid, SLIDE_10_FWD, 1);
 	}
 	else if (feh_is_kp(&keys.quit, keysym, state)) {
 		winwidget_destroy_all();

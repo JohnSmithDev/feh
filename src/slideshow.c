@@ -298,8 +298,20 @@ void slideshow_change_image(winwidget winwid, int change, int render)
 			   try the previous file, not another jmp */
 			change = SLIDE_NEXT;
 			break;
+		case SLIDE_10_FWD:
+			current_file = feh_list_jump(filelist, current_file, FORWARD, 10);
+			/* important. if the load fails, we only want to step back ONCE to
+			   try the previous file, not another jmp */
+			change=SLIDE_NEXT;
+			break;
+		case SLIDE_10_BACK:
+			current_file = feh_list_jump(filelist, current_file, BACK, 10);
+			/* important. if the load fails, we only want to step back ONCE to
+			   try the previous file, not another jmp */
+			change=SLIDE_PREV;
+			break;
 		default:
-			eprintf("BUG!\n");
+			eprintf("Bug in slideshow_change_image()!\n");
 			break;
 		}
 
